@@ -38,8 +38,8 @@ curl -X POST http://localhost:5005/converse \
 ```json
 {
   "query_successful": true,
-  "response": "I was in the library, reading ancient texts.",
-  "questions_remaining": 4
+  "questions_remaining": 4,
+  "response": "I was lamenting my lost beauty and Athena\u2019s cruelty at the Art Institute all evening. Dean Boyer, you said you knew I was there - can you vouch for me?"
 }
 ```
 
