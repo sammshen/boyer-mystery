@@ -1,0 +1,290 @@
+/* Loading animation */
+.loading {
+	display: none;
+	touch-action: none;
+	position: absolute;
+	z-index: 10000;
+
+	&.visible {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		z-index: 10000;
+		bottom: 0;
+		width: 60px;
+		height: 60px;
+		left: 0rem;
+		scale: 0.5;
+
+		&>img {
+			width: 60px;
+			height: 60px;
+			object-fit: contain;
+		}
+	}
+}
+
+/* Glitch animation */
+.glitch {
+	background-image: linear-gradient(transparent, transparent 90%, rgba(255, 255, 255, 0.1)),
+		linear-gradient(transparent, transparent 95%, rgba(255, 255, 255, 0.05));
+	background-size: 2px 100px;
+	animation: glitch 0.4s linear infinite;
+	opacity: 0.2;
+}
+
+@keyframes glitch {
+	from {
+		background-position: 0 -100px, 10px -120px;
+	}
+
+	to {
+		background-position: 0 100%, 10px 80%;
+	}
+}
+
+@keyframes grayscale-animation {
+
+	0%,
+	100% {
+		filter: grayscale(0);
+	}
+
+	50% {
+		filter: grayscale(1);
+	}
+}
+
+.grayscale-animation {
+	animation: grayscale-animation 4.5s ease-in-out infinite;
+}
+
+/* Scrollbar styles */
+/* Stylized Retro RPG Scrollbar */
+::-webkit-scrollbar {
+	width: 16px;
+	height: 16px;
+}
+
+::-webkit-scrollbar-track {
+	background: #1e1a12;
+	/* darker background for contrast */
+	border: 2px solid #2b2315;
+	box-shadow: inset 0 0 4px #000;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #403214;
+	border: 2px solid #705c2a;
+	/* gives a gold trim vibe */
+	box-shadow: inset 0 0 4px #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #5a431a;
+}
+
+::-webkit-scrollbar-corner {
+	background: #1e1a12;
+}
+
+/* Optional for Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #403214 #1e1a12;
+}
+
+.scroll-container {
+	overflow: auto;
+	max-height: 300px;
+	/* or whatever fits */
+}
+
+.scrollbar-hide {
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* Internet Explorer 10+ */
+}
+
+.scrollbar-hide ::-webkit-scrollbar {
+	display: none;
+	/* Chrome, Safari, Edge */
+}
+
+/* Fade in effect */
+.fade-in {
+	animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Fade out effect */
+.fade-out {
+	animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Slide in effect */
+.slide-in {
+	animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+// Fireworks
+$particles: 50;
+$width: 500;
+$height: 500;
+
+// Create the explosion...
+$box-shadow: (
+);
+$box-shadow2: (
+);
+
+@for $i from 0 through $particles {
+	$box-shadow: $box-shadow, random($width)-$width / 2 + px random($height)-$height / 1.2 + px hsl(random(360), 100, 50);
+	$box-shadow2: $box-shadow2, 0 0 #fff;
+}
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+
+	@-ms-keyframes #{$animationName} {
+		@content;
+	}
+
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+@mixin animation-delay($settings) {
+	-moz-animation-delay: $settings;
+	-webkit-animation-delay: $settings;
+	-o-animation-delay: $settings;
+	-ms-animation-delay: $settings;
+	animation-delay: $settings;
+}
+
+@mixin animation-duration($settings) {
+	-moz-animation-duration: $settings;
+	-webkit-animation-duration: $settings;
+	-o-animation-duration: $settings;
+	-ms-animation-duration: $settings;
+	animation-duration: $settings;
+}
+
+@mixin animation($settings) {
+	-moz-animation: $settings;
+	-webkit-animation: $settings;
+	-o-animation: $settings;
+	-ms-animation: $settings;
+	animation: $settings;
+}
+
+@mixin transform($settings) {
+	transform: $settings;
+	-moz-transform: $settings;
+	-webkit-transform: $settings;
+	-o-transform: $settings;
+	-ms-transform: $settings;
+}
+
+.pyro>.before,
+.pyro>.after {
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	box-shadow: $box-shadow2;
+	@include animation((1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards));
+}
+
+.pyro>.after {
+	@include animation-delay((1.25s, 1.25s, 1.25s));
+	@include animation-duration((1.25s, 1.25s, 6.25s));
+}
+
+@include keyframes(bang) {
+	to {
+		box-shadow: $box-shadow;
+	}
+}
+
+@include keyframes(gravity) {
+	to {
+		@include transform(translateY(200px));
+		opacity: 0;
+	}
+}
+
+@include keyframes(position) {
+
+	0%,
+	19.9% {
+		margin-top: 10%;
+		margin-left: 40%;
+	}
+
+	20%,
+	39.9% {
+		margin-top: 40%;
+		margin-left: 30%;
+	}
+
+	40%,
+	59.9% {
+		margin-top: 20%;
+		margin-left: 70%;
+	}
+
+	60%,
+	79.9% {
+		margin-top: 30%;
+		margin-left: 20%;
+	}
+
+	80%,
+	99.9% {
+		margin-top: 30%;
+		margin-left: 80%;
+	}
+}
