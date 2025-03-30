@@ -9,3 +9,5 @@ Browser Compatibility:
 - If you can't access on Chrome
     - go to `chrome://net-internals/#hsts`
     - Under Delete domain security policies, type: `deanboyer.org`
+
+![Boyer Thumbnail](boyer.png)
