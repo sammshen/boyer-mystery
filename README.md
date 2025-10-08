@@ -1,5 +1,7 @@
 ### Originally for Uncommon Hacks 2025
 
+Amazing frontend made by Omar Ibrahim.
+
 Visit at:
 [https://deanboyer.org/](https://deanboyer.org/)
 
